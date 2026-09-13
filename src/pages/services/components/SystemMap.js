@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mark } from '../../../components/brand/Logo';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 import { useServicesText } from '../i18n';
 
@@ -53,7 +54,7 @@ const SystemMap = () => {
       </svg>
 
       <div className="ds-map__center" style={{ left: '50%', top: '50%' }}>
-        <span className="ds-map__mark" aria-hidden="true">M</span>
+        <span className="ds-map__mark" aria-hidden="true"><Mark size={22} /></span>
         <strong>{center.title}</strong>
         <span className="ds-map__sub">{center.sub}</span>
       </div>
