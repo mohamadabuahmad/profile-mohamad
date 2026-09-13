@@ -1,178 +1,121 @@
 /* ============================================================
-   About — an editorial profile: an opening statement, principles
-   on hairlines, a record of background, and the portrait handled
-   as a considered image rather than an avatar.
+   About — credibility, thinking and background.
    ============================================================ */
 
-/* ---------- Opening statement ---------- */
 .ds-about-hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
-  gap: clamp(40px, 6vw, 96px);
-  align-items: end;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
 }
-.ds-about-hero__copy {
-  padding-bottom: clamp(0px, 1vw, 12px);
+.ds-about-hero__title {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  max-width: 20ch;
 }
-.ds-about-hero .ds-about-hero__title {
-  font-size: clamp(2.3rem, 5.2vw, 4.2rem);
-  line-height: 1.03;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  max-width: 17ch;
-  text-wrap: balance;
-}
-.ds-about-hero__lede {
-  max-width: 44ch;
-}
-
-/* ---------- Portrait ---------- */
-/* No card, no radius, no avatar crop: a tall image that wipes open from its
-   base, with a mono annotation under a hairline. */
-.ds-portrait {
+.ds-about-hero__photo {
   margin: 0;
-  justify-self: end;
-  width: 100%;
-  max-width: 400px;
+  justify-self: center;
 }
-.ds-portrait__frame {
-  overflow: hidden;
-  background: var(--ds-stage);
-  border-radius: var(--ds-radius);
-  animation: ds-portrait-open var(--ds-cinematic) var(--ds-ease-in-out) both;
-  animation-delay: 260ms;
-}
-.ds-portrait__frame img {
-  display: block;
+.ds-about-hero__photo img {
   width: 100%;
+  max-width: 360px;
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   object-fit: cover;
-  object-position: center 22%;
-  /* Monochrome discipline: the page introduces no colour of its own. */
-  filter: grayscale(1) contrast(1.03);
-  animation: ds-portrait-settle calc(var(--ds-cinematic) * 1.4) var(--ds-ease) both;
-  animation-delay: 260ms;
-}
-.ds-portrait__caption {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid var(--ds-line);
-  font-family: var(--ds-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ds-faint);
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-line-strong);
+  box-shadow: var(--ds-shadow);
 }
 
-@keyframes ds-portrait-open {
-  from { clip-path: inset(0 0 100% 0); }
-  to   { clip-path: inset(0 0 0 0); }
-}
-@keyframes ds-portrait-settle {
-  from { transform: scale(1.08); }
-  to   { transform: scale(1); }
-}
-
-/* ---------- Principles ---------- */
-/* A numbered editorial list: index, statement, explanation — each on its
-   own hairline row, reading across the full measure. */
 .ds-principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--ds-ink);
+  border-top: 1px solid var(--ds-line);
 }
 .ds-principles li {
-  display: grid;
-  /* rem, not ch: the statement column is set larger than the body text, so a
-     ch measure taken from the row's own font-size would size it short. */
-  grid-template-columns: 4.5rem minmax(0, 16rem) minmax(0, 1fr);
-  align-items: start;
-  gap: 10px clamp(24px, 4vw, 56px);
-  padding-block: clamp(26px, 3.2vw, 40px);
+  padding: clamp(24px, 3vw, 36px) 0;
   border-bottom: 1px solid var(--ds-line);
+}
+.ds-principles li:nth-child(odd) {
+  padding-inline-end: clamp(24px, 4vw, 56px);
+  border-inline-end: 1px solid var(--ds-line);
+}
+.ds-principles li:nth-child(even) {
+  padding-inline-start: clamp(24px, 4vw, 56px);
 }
 .ds-principles__num {
   font-family: var(--ds-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  line-height: 1.9;
-  color: var(--ds-faint);
+  font-size: 0.75rem;
+  color: var(--accent);
 }
-.ds-principles__title {
-  margin: 0;
-  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  color: var(--ds-ink);
-  text-wrap: balance;
+.ds-principles h3 {
+  margin: 10px 0 8px;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
 }
-.ds-principles__text {
+.ds-principles p {
   color: var(--ds-muted);
-  font-size: 1rem;
   line-height: 1.7;
-  max-width: 48ch;
+  max-width: 46ch;
 }
 
-/* ---------- Background ---------- */
-/* Set as a technical record: period and category in mono on the leading
-   column, the entry itself beside it, one hairline per row. */
 .ds-timeline {
+  display: grid;
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--ds-ink);
 }
 .ds-timeline li {
-  display: grid;
-  grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr);
-  gap: 10px clamp(20px, 3vw, 40px);
-  padding-block: clamp(24px, 3vw, 34px);
-  border-bottom: 1px solid var(--ds-line);
+  position: relative;
+  padding: 0 0 32px clamp(20px, 2vw, 28px);
+  padding-inline-start: clamp(20px, 2vw, 28px);
+  padding-inline-end: 0;
+  border-inline-start: 1px solid var(--ds-line);
+}
+.ds-timeline li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -5px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.ds-timeline li:last-child {
+  padding-bottom: 0;
 }
 .ds-timeline__meta {
-  display: grid;
-  align-content: start;
-  justify-items: start;
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
-.ds-timeline__tag {
-  display: inline-block;
-  padding: 4px 8px;
-  border: 1px solid var(--ds-line-strong);
-  border-radius: var(--ds-radius);
-  font-family: var(--ds-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1.2;
-  color: var(--ds-muted);
+.ds-chip--tag {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 .ds-timeline__period {
-  direction: ltr;
-  unicode-bidi: isolate;
   font-family: var(--ds-mono);
   font-size: 0.76rem;
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--ds-ink);
+  color: var(--ds-muted);
 }
-.ds-timeline__body {
-  min-width: 0;
-}
-.ds-timeline__role {
+.ds-timeline h3 {
   margin: 0 0 4px;
-  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  color: var(--ds-ink);
+  font-size: 1.2rem;
 }
 .ds-timeline__org {
-  margin-bottom: 10px;
-  font-size: 0.92rem;
-  color: var(--ds-muted);
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
 .ds-timeline__text {
   color: var(--ds-muted);
@@ -180,116 +123,72 @@
   max-width: 54ch;
 }
 
-/* ---------- Technology ---------- */
 .ds-tech-groups {
-  margin: 0;
-  border-top: 1px solid var(--ds-ink);
-}
-.ds-tech-groups__row {
   display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
-  align-items: baseline;
-  gap: 12px clamp(20px, 3vw, 40px);
-  padding-block: clamp(18px, 2.2vw, 26px);
-  border-bottom: 1px solid var(--ds-line);
-}
-.ds-tech-groups__label {
-  font-family: var(--ds-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ds-muted);
-}
-.ds-tech-groups__items {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 32px;
   margin: 0;
-  min-width: 0;
+}
+.ds-tech-groups dd {
+  margin: 10px 0 0;
 }
 
-/* ---------- Working languages ---------- */
-.ds-languages__body {
+.ds-languages {
   display: grid;
   justify-items: start;
-  gap: 0;
+  gap: 16px;
 }
-.ds-languages__body .ds-eyebrow {
-  margin-bottom: 16px;
+.ds-languages .ds-lede {
+  max-width: 60ch;
 }
 .ds-languages__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px clamp(24px, 4vw, 52px);
-  margin-block: clamp(28px, 3.5vw, 44px) clamp(20px, 2.5vw, 28px);
-  font-size: clamp(1.6rem, 4.2vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  gap: 12px 28px;
+  margin-block: 8px;
+  font-family: var(--ds-display-font);
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  font-weight: 700;
   color: var(--ds-ink);
 }
-.ds-languages__row span {
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--ds-line-strong);
-}
 .ds-languages__row span:nth-child(2) {
-  font-family: "IBM Plex Sans Arabic", var(--ds-font);
-  letter-spacing: 0;
+  font-family: "IBM Plex Sans Arabic", var(--ds-display-font);
 }
 .ds-languages__row span:nth-child(3) {
-  font-family: "IBM Plex Sans Hebrew", var(--ds-font);
-  letter-spacing: 0;
-}
-.ds-languages__body .ds-lede {
-  max-width: 56ch;
-}
-.ds-languages__cta {
-  margin-top: clamp(22px, 2.6vw, 30px);
+  font-family: "IBM Plex Sans Hebrew", var(--ds-display-font);
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .ds-about-hero__grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(32px, 6vw, 48px);
   }
-  .ds-portrait {
-    justify-self: start;
-    max-width: 340px;
+  .ds-about-hero__photo {
+    order: -1;
+    justify-self: stretch;
   }
-  .ds-principles li {
-    grid-template-columns: 3.4rem minmax(0, 1fr);
+  .ds-about-hero__photo img {
+    max-width: none;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-position: center 28%;
   }
-  .ds-principles__text {
-    grid-column: 2;
-  }
-  .ds-tech-groups__row {
-    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  .ds-tech-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .ds-about-hero .ds-about-hero__title {
-    max-width: none;
-  }
-  .ds-portrait {
-    max-width: none;
-  }
-  .ds-portrait__frame img {
-    aspect-ratio: 5 / 6;
-  }
-  .ds-principles li {
-    grid-template-columns: 2.6rem minmax(0, 1fr);
-    gap: 8px 14px;
-  }
-  .ds-timeline li,
-  .ds-tech-groups__row {
+  .ds-principles {
     grid-template-columns: minmax(0, 1fr);
   }
-  .ds-timeline__meta {
-    grid-auto-flow: column;
-    align-items: center;
-    justify-content: start;
-    gap: 12px;
+  .ds-principles li:nth-child(odd) {
+    padding-inline-end: 0;
+    border-inline-end: 0;
   }
-  .ds-languages__row {
-    gap: 10px 22px;
+  .ds-principles li:nth-child(even) {
+    padding-inline-start: 0;
+  }
+  .ds-tech-groups {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
+import { FiFileText, FiBell, FiCheck, FiGrid, FiBox, FiCalendar, FiUsers, FiSettings } from 'react-icons/fi';
 import { useServicesText } from '../i18n';
 
-// One drawn visual system per service. They are built from hairlines, rectangles,
-// nodes and mono text only — monochrome, no illustration, no colour. The stage is
-// decorative (aria-hidden); the visible caption says what the example shows.
-// Layouts use logical properties, so each one mirrors naturally in Arabic and Hebrew.
+// Illustrative, CSS-drawn product visuals for each solution. They are decorative
+// (aria-hidden); the visible caption says what the example shows. Layouts use
+// logical properties, so each one mirrors naturally in Arabic and Hebrew.
 
 const Frame = ({ caption, className, children }) => (
   <figure className={`ds-visual ${className}`}>
@@ -13,7 +13,6 @@ const Frame = ({ caption, className, children }) => (
   </figure>
 );
 
-// A question answered from the business's own documents, set as a transcript.
 export const AiVisual = () => {
   const v = useServicesText().t.visuals.ai;
   return (
@@ -23,28 +22,23 @@ export const AiVisual = () => {
           <span className="ds-dot ds-dot--live" />
           {v.bar}
         </div>
-        <div className="ds-chat__row ds-chat__msg--user">
-          <span className="ds-chat__key">Q</span>
-          <p className="ds-chat__msg">{v.question}</p>
+        <p className="ds-chat__msg ds-chat__msg--user">{v.question}</p>
+        <div className="ds-chat__msg ds-chat__msg--ai">
+          <span className="ds-chat__typing">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="ds-chat__answer">{v.answer}</span>
+          <span className="ds-chat__source">
+            <FiFileText /> {v.source}
+          </span>
         </div>
-        <div className="ds-chat__row ds-chat__msg--ai">
-          <span className="ds-chat__key">A</span>
-          <div className="ds-chat__msg">
-            <span className="ds-chat__typing">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="ds-chat__answer">{v.answer}</span>
-          </div>
-        </div>
-        <p className="ds-chat__source">{v.source}</p>
       </div>
     </Frame>
   );
 };
 
-// Inputs on one side, actions on the other, one automation layer between them.
 export const AutomationVisual = () => {
   const v = useServicesText().t.visuals.automation;
   return (
@@ -57,15 +51,15 @@ export const AutomationVisual = () => {
         </ul>
         <div className="ds-bus__hub">
           <span className="ds-bus__hub-title">{v.hubTitle}</span>
-          <span className="ds-bus__verbs">
-            {v.hubVerbs.map((verb) => (
-              <span key={verb}>{verb}</span>
-            ))}
-          </span>
+          {v.hubVerbs.map((verb) => (
+            <span key={verb}>{verb}</span>
+          ))}
         </div>
         <ul className="ds-bus__side ds-bus__side--out">
           {v.actions.map((s, i) => (
-            <li key={s} style={{ '--d': i }}>{s}</li>
+            <li key={s} style={{ '--d': i }}>
+              <FiCheck /> {s}
+            </li>
           ))}
         </ul>
       </div>
@@ -73,13 +67,15 @@ export const AutomationVisual = () => {
   );
 };
 
-// A page wireframe with the three things a converting page has to get right.
 export const WebVisual = () => {
   const v = useServicesText().t.visuals.web;
   return (
     <Frame className="ds-visual--web" caption={v.caption}>
       <div className="ds-browser">
         <div className="ds-browser__bar">
+          <span />
+          <span />
+          <span />
           <em dir="ltr">{v.url}</em>
         </div>
         <div className="ds-browser__page">
@@ -108,16 +104,15 @@ export const WebVisual = () => {
   );
 };
 
-// The operational screen a custom application replaces spreadsheets with.
 export const WebAppVisual = () => {
   const v = useServicesText().t.visuals.webapp;
   return (
     <Frame className="ds-visual--webapp" caption={v.caption}>
       <div className="ds-dash">
-        <div className="ds-dash__side">
+        <nav className="ds-dash__side">
           <span className="ds-dash__logo" />
-          <i /><i /><i /><i />
-        </div>
+          <FiGrid /><FiBox /><FiCalendar /><FiUsers /><FiSettings />
+        </nav>
         <div className="ds-dash__main">
           <div className="ds-dash__top"><i /><span className="ds-dash__avatar" /></div>
           <div className="ds-dash__tiles">
@@ -130,7 +125,7 @@ export const WebAppVisual = () => {
           </div>
           <div className="ds-dash__chart">
             {[42, 58, 50, 72, 64, 86, 78].map((h, i) => (
-              <i key={h + i} style={{ '--h': `${h}%`, '--d': i }} />
+              <i key={i} style={{ '--h': `${h}%`, '--d': i }} />
             ))}
           </div>
           <ul className="ds-dash__table">
@@ -148,7 +143,6 @@ export const WebAppVisual = () => {
   );
 };
 
-// The same business, in the customer's hand.
 export const MobileVisual = () => {
   const v = useServicesText().t.visuals.mobile;
   return (
@@ -156,6 +150,9 @@ export const MobileVisual = () => {
       <div className="ds-phone">
         <div className="ds-phone__notch" />
         <div className="ds-phone__screen">
+          <div className="ds-phone__toast">
+            <FiBell /> <span>{v.toast}</span>
+          </div>
           <p className="ds-phone__title">{v.title}</p>
           {v.cards.map((c) => (
             <div key={c.time} className="ds-phone__card">
@@ -166,7 +163,6 @@ export const MobileVisual = () => {
               </span>
             </div>
           ))}
-          <div className="ds-phone__toast">{v.toast}</div>
           <span className="ds-phone__btn">{v.button}</span>
         </div>
       </div>

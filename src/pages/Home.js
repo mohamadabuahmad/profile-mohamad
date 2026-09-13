@@ -4,7 +4,7 @@ import { FiArrowRight, FiCheck, FiUser, FiZap } from 'react-icons/fi';
 import { useSite } from '../app/SiteContext';
 import { trackEvent } from '../analytics';
 import SectionHeading from '../components/ui/SectionHeading';
-import BrandResolve from '../components/brand/BrandResolve';
+import HeroCanvas from '../components/HeroCanvas';
 import DeviceShot from '../components/DeviceShot';
 import AutomationGraphic from '../components/AutomationGraphic';
 import CtaBand from '../components/CtaBand';
@@ -20,43 +20,33 @@ const Home = ({ work }) => {
 
   return (
     <>
-      {/* Hero — the brand moment: a complete square resolving into the mark */}
+      {/* Hero */}
       <section className="ds-hero-home" aria-labelledby="home-title">
-        <div className="ds-wrap ds-hero-home__grid">
-          <div className="ds-hero-home__copy">
-            <p className="ds-eyebrow ds-rise">{h.hero.eyebrow}</p>
-            {/* Masked as one block, not per character — splitting text would break
-                Arabic shaping and Hebrew bidi. */}
-            <h1 id="home-title" className="ds-display ds-rise" style={{ '--d': 1 }}>
-              <span className="ds-mask is-in"><span>{h.hero.title}</span></span>
-            </h1>
-            <p className="ds-lede ds-hero-home__lede ds-rise" style={{ '--d': 2 }}>{h.hero.lede}</p>
-            <div className="ds-actions ds-hero-home__actions ds-rise" style={{ '--d': 3 }}>
-              <Link
-                to={path('contact')}
-                className="ds-btn ds-btn--primary ds-btn--lg"
-                onClick={() => trackEvent('Site', 'cta_click', 'home_hero_primary')}
-              >
-                {h.hero.primary} <FiArrowRight className="ds-arrow" aria-hidden="true" />
-              </Link>
-              <Link
-                to={path('work')}
-                className="ds-btn ds-btn--ghost ds-btn--lg"
-                onClick={() => trackEvent('Site', 'cta_click', 'home_hero_secondary')}
-              >
-                {h.hero.secondary}
-              </Link>
-            </div>
+        <div className="ds-wrap ds-hero-home__copy">
+          <p className="ds-eyebrow ds-rise">{h.hero.eyebrow}</p>
+          <h1 id="home-title" className="ds-display ds-rise" style={{ '--d': 1 }}>{h.hero.title}</h1>
+          <p className="ds-lede ds-hero-home__lede ds-rise" style={{ '--d': 2 }}>{h.hero.lede}</p>
+          <div className="ds-actions ds-hero-home__actions ds-rise" style={{ '--d': 3 }}>
+            <Link
+              to={path('contact')}
+              className="ds-btn ds-btn--primary ds-btn--lg"
+              onClick={() => trackEvent('Site', 'cta_click', 'home_hero_primary')}
+            >
+              {h.hero.primary} <FiArrowRight className="ds-arrow" aria-hidden="true" />
+            </Link>
+            <Link
+              to={path('work')}
+              className="ds-btn ds-btn--ghost ds-btn--lg"
+              onClick={() => trackEvent('Site', 'cta_click', 'home_hero_secondary')}
+            >
+              {h.hero.secondary}
+            </Link>
           </div>
-
-          <figure className="ds-hero-home__stage">
-            <BrandResolve />
-            <figcaption className="ds-note">{h.hero.visualLabel}</figcaption>
-          </figure>
         </div>
 
-        <div className="ds-wrap">
-          <ul className="ds-hero-home__points ds-rise" style={{ '--d': 4 }}>
+        <div className="ds-hero-home__stage ds-rise" style={{ '--d': 4 }}>
+          <HeroCanvas label={h.hero.visualLabel} />
+          <ul className="ds-hero-home__points">
             {h.hero.points.map((point) => (
               <li key={point}><FiCheck aria-hidden="true" /> {point}</li>
             ))}
@@ -69,7 +59,6 @@ const Home = ({ work }) => {
         <div className="ds-wrap">
           <SectionHeading
             id="capabilities-title"
-            index={1}
             eyebrow={h.capabilities.eyebrow}
             title={h.capabilities.title}
             intro={h.capabilities.intro}
@@ -102,15 +91,12 @@ const Home = ({ work }) => {
               ))}
             </ul>
           </div>
-          <div className="ds-problems-home__answer ds-index" data-reveal style={{ '--d': 1 }}>
-            <span className="ds-index__num" aria-hidden="true">02</span>
-            <div className="ds-index__body">
-              <h2 id="home-problems-title" className="ds-h2">{h.problems.title}</h2>
-              <p className="ds-lede">{h.problems.answer}</p>
-              <Link to={path('services')} className="ds-link">
-                {h.problems.cta} <FiArrowRight className="ds-arrow" aria-hidden="true" />
-              </Link>
-            </div>
+          <div className="ds-problems-home__answer" data-reveal style={{ '--d': 1 }}>
+            <h2 id="home-problems-title" className="ds-h2">{h.problems.title}</h2>
+            <p className="ds-lede">{h.problems.answer}</p>
+            <Link to={path('services')} className="ds-link">
+              {h.problems.cta} <FiArrowRight className="ds-arrow" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
@@ -118,7 +104,7 @@ const Home = ({ work }) => {
       {/* Automation in one picture */}
       <section className="ds-section" aria-labelledby="home-automation-title">
         <div className="ds-wrap">
-          <SectionHeading id="home-automation-title" index={3} eyebrow={h.automation.eyebrow} title={h.automation.title} intro={h.automation.text} />
+          <SectionHeading id="home-automation-title" eyebrow={h.automation.eyebrow} title={h.automation.title} intro={h.automation.text} />
           <div className="ds-flow" data-reveal>
             <div className="ds-flow__lane">
               <p className="ds-flow__label">{h.automation.beforeLabel}</p>
@@ -149,7 +135,7 @@ const Home = ({ work }) => {
       {/* Selected work */}
       <section className="ds-section ds-band" aria-labelledby="home-work-title">
         <div className="ds-wrap">
-          <SectionHeading id="home-work-title" index={4} eyebrow={h.work.eyebrow} title={h.work.title} intro={h.work.text} />
+          <SectionHeading id="home-work-title" eyebrow={h.work.eyebrow} title={h.work.title} intro={h.work.text} />
           <div className="ds-work-preview">
             {projects.map((project, i) => (
               <article key={project.id} className="ds-work-card" data-reveal style={{ '--d': i }}>
@@ -182,7 +168,7 @@ const Home = ({ work }) => {
       {/* Process */}
       <section className="ds-section" aria-labelledby="home-process-title">
         <div className="ds-wrap">
-          <SectionHeading id="home-process-title" index={5} eyebrow={h.process.eyebrow} title={h.process.title} />
+          <SectionHeading id="home-process-title" eyebrow={h.process.eyebrow} title={h.process.title} />
           <ol className="ds-steps" data-reveal>
             {h.process.steps.map((step, i) => (
               <li key={step.title} style={{ '--d': i }}>
@@ -203,7 +189,7 @@ const Home = ({ work }) => {
       {/* Why */}
       <section className="ds-section ds-band" aria-labelledby="home-why-title">
         <div className="ds-wrap ds-why-home">
-          <SectionHeading id="home-why-title" index={6} eyebrow={h.why.eyebrow} title={h.why.title} />
+          <SectionHeading id="home-why-title" eyebrow={h.why.eyebrow} title={h.why.title} />
           <ul className="ds-why-home__list">
             {h.why.items.map((item, i) => (
               <li key={item.title} data-reveal style={{ '--d': i }}>
@@ -215,13 +201,13 @@ const Home = ({ work }) => {
         </div>
       </section>
 
-      {/* Technology — a spec line, not a wall of tags */}
+      {/* Technology */}
       <section className="ds-section ds-section--tight" aria-labelledby="home-tech-title">
-        <div className="ds-wrap ds-tech-home">
-          <SectionHeading id="home-tech-title" index={7} eyebrow={h.tech.eyebrow} title={h.tech.title} />
-          <ul className="ds-tech-home__list" data-reveal>
+        <div className="ds-wrap">
+          <SectionHeading id="home-tech-title" eyebrow={h.tech.eyebrow} title={h.tech.title} />
+          <ul className="ds-chips ds-tech-strip" data-reveal>
             {h.tech.items.map((item) => (
-              <li key={item} dir="ltr">{item}</li>
+              <li key={item} className="ds-chip" dir="ltr">{item}</li>
             ))}
           </ul>
         </div>

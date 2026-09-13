@@ -62,8 +62,7 @@
       "linkedin": "LinkedIn profile",
       "github": "GitHub profile",
       "instagram": "Instagram profile"
-    },
-    "descriptor": "Intelligent Systems"
+    }
   },
   "cta": {
     "title": "Have a business problem that technology could solve?",
@@ -83,7 +82,7 @@
         "AI, web and mobile under one roof",
         "Built in English, Arabic and Hebrew"
       ],
-      "visualLabel": "The mark: one complete square, resolved by subtraction into an M."
+      "visualLabel": "Animated diagram: a business connected to AI, automation, web and mobile systems"
     },
     "capabilities": {
       "eyebrow": "What I build",

@@ -13,15 +13,14 @@ const About = () => {
 
   return (
     <>
-      {/* Opening statement — the page header is the statement, the portrait is the counterweight. */}
       <section className="ds-hero-page ds-about-hero" aria-labelledby="about-title">
         <div className="ds-wrap ds-about-hero__grid">
-          <div className="ds-about-hero__copy">
+          <div>
             <p className="ds-eyebrow ds-rise">{a.hero.eyebrow}</p>
             <h1 id="about-title" className="ds-display ds-about-hero__title ds-rise" style={{ '--d': 1 }}>
               {a.hero.title}
             </h1>
-            <p className="ds-lede ds-about-hero__lede ds-rise" style={{ '--d': 2 }}>{a.hero.lede}</p>
+            <p className="ds-lede ds-rise" style={{ '--d': 2 }}>{a.hero.lede}</p>
             <div className="ds-actions ds-rise" style={{ '--d': 3 }}>
               <Link to={path('contact')} className="ds-btn ds-btn--primary">
                 {t.cta.primary} <FiArrowRight className="ds-arrow" aria-hidden="true" />
@@ -36,87 +35,66 @@ const About = () => {
               </a>
             </div>
           </div>
-
-          <figure className="ds-portrait ds-rise" style={{ '--d': 2 }}>
-            <div className="ds-portrait__frame">
-              <img
-                src={`${process.env.PUBLIC_URL}/profile_pic.jpg`}
-                alt={a.hero.photoAlt}
-                width="420"
-                height="525"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-            <figcaption className="ds-portrait__caption" aria-hidden="true">{a.hero.photoAlt}</figcaption>
+          <figure className="ds-about-hero__photo ds-rise" style={{ '--d': 2 }}>
+            <img
+              src={`${process.env.PUBLIC_URL}/profile_pic.jpg`}
+              alt={a.hero.photoAlt}
+              width="420"
+              height="420"
+              loading="eager"
+              decoding="async"
+            />
           </figure>
         </div>
       </section>
 
-      {/* How I think — a numbered editorial list on hairlines, not a card grid. */}
+      {/* How I think */}
       <section className="ds-section ds-band" aria-labelledby="principles-title">
         <div className="ds-wrap">
-          <SectionHeading
-            id="principles-title"
-            index={1}
-            eyebrow={a.principles.eyebrow}
-            title={a.principles.title}
-          />
-          <ol className="ds-principles">
+          <SectionHeading id="principles-title" eyebrow={a.principles.eyebrow} title={a.principles.title} />
+          <ul className="ds-principles">
             {a.principles.items.map((item, i) => (
-              <li key={item.title} data-reveal style={{ '--d': i }}>
+              <li key={item.title} data-reveal style={{ '--d': i % 2 }}>
                 <span className="ds-principles__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="ds-principles__title">{item.title}</h3>
-                <p className="ds-principles__text">{item.text}</p>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      {/* Experience and education — set as a record, one row per entry. */}
+      {/* Experience and education */}
       <section className="ds-section" aria-labelledby="timeline-title">
         <div className="ds-wrap ds-split">
           <div className="ds-split__media">
-            <SectionHeading
-              id="timeline-title"
-              index={2}
-              eyebrow={a.timeline.eyebrow}
-              title={a.timeline.title}
-            />
+            <SectionHeading id="timeline-title" eyebrow={a.timeline.eyebrow} title={a.timeline.title} />
           </div>
           <ol className="ds-timeline">
             {a.timeline.items.map((item, i) => (
               <li key={`${item.role}-${item.period}`} data-reveal style={{ '--d': i }}>
                 <p className="ds-timeline__meta">
-                  <span className="ds-timeline__tag">{item.tag}</span>
+                  <span className="ds-chip ds-chip--tag">{item.tag}</span>
                   <span className="ds-timeline__period" dir="ltr">{item.period}</span>
                 </p>
-                <div className="ds-timeline__body">
-                  <h3 className="ds-timeline__role">{item.role}</h3>
-                  <p className="ds-timeline__org">{item.org}</p>
-                  <p className="ds-timeline__text">{item.text}</p>
-                </div>
+                <h3>{item.role}</h3>
+                <p className="ds-timeline__org">{item.org}</p>
+                <p className="ds-timeline__text">{item.text}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* Technology — a specification sheet: label on the left rule, inventory beside it. */}
+      {/* Technology */}
       <section className="ds-section ds-band" aria-labelledby="about-tech-title">
         <div className="ds-wrap">
-          <SectionHeading
-            id="about-tech-title"
-            index={3}
-            eyebrow={a.capabilities.eyebrow}
-            title={a.capabilities.title}
-          />
-          <dl className="ds-tech-groups">
-            {a.capabilities.groups.map((group, i) => (
-              <div key={group.label} className="ds-tech-groups__row" data-reveal style={{ '--d': i }}>
-                <dt className="ds-tech-groups__label">{group.label}</dt>
-                <dd className="ds-tech-groups__items">
+          <SectionHeading id="about-tech-title" eyebrow={a.capabilities.eyebrow} title={a.capabilities.title} />
+          <dl className="ds-tech-groups" data-reveal>
+            {a.capabilities.groups.map((group) => (
+              <div key={group.label}>
+                <dt className="ds-micro">{group.label}</dt>
+                <dd>
                   <ul className="ds-chips">
                     {group.items.map((item) => (
                       <li key={item} className="ds-chip" dir="ltr">{item}</li>
@@ -129,25 +107,20 @@ const About = () => {
         </div>
       </section>
 
-      {/* Working languages — three scripts, set at display size. */}
+      {/* Working languages */}
       <section className="ds-section ds-section--tight" aria-labelledby="languages-title">
-        <div className="ds-wrap">
-          <div className="ds-languages ds-index" data-reveal>
-            <span className="ds-index__num" aria-hidden="true">04</span>
-            <div className="ds-index__body ds-languages__body">
-              <p className="ds-eyebrow">{a.languages.eyebrow}</p>
-              <h2 id="languages-title" className="ds-h2">{a.languages.title}</h2>
-              <p className="ds-languages__row" aria-hidden="true">
-                <span lang="en">English</span>
-                <span lang="ar">العربية</span>
-                <span lang="he">עברית</span>
-              </p>
-              <p className="ds-lede">{a.languages.text}</p>
-              <Link to={path('work')} className="ds-link ds-languages__cta">
-                {a.languages.cta} <FiArrowRight className="ds-arrow" aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
+        <div className="ds-wrap ds-languages" data-reveal>
+          <p className="ds-eyebrow">{a.languages.eyebrow}</p>
+          <h2 id="languages-title" className="ds-h2">{a.languages.title}</h2>
+          <p className="ds-lede">{a.languages.text}</p>
+          <p className="ds-languages__row" aria-hidden="true">
+            <span lang="en">English</span>
+            <span lang="ar">العربية</span>
+            <span lang="he">עברית</span>
+          </p>
+          <Link to={path('work')} className="ds-link">
+            {a.languages.cta} <FiArrowRight className="ds-arrow" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 

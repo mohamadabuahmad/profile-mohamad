@@ -26,8 +26,8 @@ const EMAIL = 'mohamdadm25@gmail.com';
 const PHONE = '+972542366982';
 const SAME_AS = ['https://www.linkedin.com/in/mohamad-abu-ahmad-817a82262/', 'https://github.com/mohamadabuahmad'];
 const FONTS = {
-  ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap',
-  he: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap',
+  ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap',
+  he: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap',
 };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');

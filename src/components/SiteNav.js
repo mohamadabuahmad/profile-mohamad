@@ -5,7 +5,7 @@ import { useTheme } from '../App';
 import { useSite } from '../app/SiteContext';
 import { trackEvent } from '../analytics';
 import LanguageSwitcher from './LanguageSwitcher';
-import Logo from './brand/Logo';
+import { Mark } from './brand/Logo';
 
 const LINKS = ['services', 'work', 'about'];
 
@@ -64,12 +64,6 @@ const SiteNav = () => {
     };
   }, [open]);
 
-  const navLinks = LINKS.map((id) => (
-    <Link key={id} to={path(id)} className={`ds-nav__link ${page === id ? 'is-active' : ''}`} aria-current={page === id ? 'page' : undefined}>
-      {t.nav.links[id]}
-    </Link>
-  ));
-
   // While the panel is open the rest of the page is inert, so assistive tech
   // can't reach behind it even though the visual focus trap already holds.
   useEffect(() => {
@@ -85,11 +79,18 @@ const SiteNav = () => {
     };
   }, [open]);
 
+  const navLinks = LINKS.map((id) => (
+    <Link key={id} to={path(id)} className={`ds-nav__link ${page === id ? 'is-active' : ''}`} aria-current={page === id ? 'page' : undefined}>
+      {t.nav.links[id]}
+    </Link>
+  ));
+
   return (
     <header className={`ds-nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="ds-nav__bar">
         <Link to={path('home')} className="ds-nav__logo" aria-label={t.nav.home}>
-          <Logo size={24} label="MohamadDev" />
+          <span className="ds-nav__mark" aria-hidden="true"><Mark size={22} /></span>
+          <span className="ds-nav__word" dir="ltr">Mohamad<span>Dev</span></span>
         </Link>
 
         <nav className="ds-nav__links" aria-label={t.nav.primary}>{navLinks}</nav>
@@ -124,10 +125,7 @@ const SiteNav = () => {
         <nav className="ds-nav__panel-links" aria-label={t.nav.primary}>
           {[...LINKS, 'contact'].map((id, i) => (
             <Link key={id} to={path(id)} className="ds-nav__panel-link" style={{ '--d': i }}>
-              <span className="ds-nav__panel-num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="ds-nav__panel-label">{t.nav.links[id]}</span>
+              <span>{t.nav.links[id]}</span>
               <FiArrowRight className="ds-arrow" aria-hidden="true" />
             </Link>
           ))}

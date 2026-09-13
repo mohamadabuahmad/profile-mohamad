@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import { useSite } from '../app/SiteContext';
-import BrandResolve from '../components/brand/BrandResolve';
 
 const LINKS = ['home', 'services', 'work', 'contact'];
 
@@ -13,10 +12,6 @@ const NotFound = () => {
   return (
     <section className="ds-section ds-notfound" aria-labelledby="notfound-title">
       <div className="ds-wrap ds-notfound__inner">
-        {/* The mark, left unresolved — the page that did not come together. */}
-        <div className="ds-notfound__mark" aria-hidden="true">
-          <BrandResolve variant="broken" />
-        </div>
         <p className="ds-eyebrow ds-notfound__code" aria-hidden="true">{n.code}</p>
         <h1 id="notfound-title" className="ds-display ds-notfound__title">{n.title}</h1>
         <p className="ds-lede">{n.text}</p>

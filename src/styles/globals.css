@@ -1,78 +1,75 @@
 /* ============================================================
-   MohamadDev — global tokens.
-   The palette, type and geometry here come from the approved brand
-   identity. See docs/brand-identity.md before changing any value.
+   Global Design System — modern, professional, theme-aware
    ============================================================ */
+/* Fonts (Inter, Space Grotesk) are loaded from public/index.html */
 
-/* ---------- Design tokens : WARM WHITE (default) ---------- */
+/* ---------- Design tokens : DARK (default) ---------- */
 :root,
-.light {
-  /* Identity palette */
-  --ink: #0b0b0c;
-  --graphite: #2a2926;
-  --warm-white: #f6f4f1;
-  --silver: #c7c3bc;
-  --deep-blue: #374f6a; /* oklch(0.42 0.055 252) — UI state only, never the mark */
+.dark {
+  --bg: #070b16;
+  --bg-2: #0b1124;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --card: rgba(255, 255, 255, 0.045);
+  --card-border: rgba(120, 160, 255, 0.14);
+  --card-border-hover: rgba(59, 155, 255, 0.5);
 
-  --bg: var(--warm-white);
-  --bg-2: #edeae5;
-  --surface: #ffffff;
-  --surface-2: #edeae5;
-  --card: #ffffff;
-  --card-border: #dcd8d2;
-  --card-border-hover: var(--ink);
+  --text: #e9eefc;
+  --text-strong: #ffffff;
+  --text-muted: #9fb0d4;
+  --text-faint: #6f80a6;
 
-  --text: #2a2926;
-  --text-strong: var(--ink);
-  --text-muted: #5b5955;
-  /* The mono labels this paints are small text, so it must clear 4.5:1 on every
-     ground it lands on: 5.1 on warm white, 4.7 on the band, 5.6 on white. */
-  --text-faint: #6b6761;
+  --accent: #3b9bff;
+  --accent-2: #6d5efc;
+  --accent-grad: linear-gradient(135deg, #2f80ed 0%, #6d5efc 100%);
+  --accent-soft: rgba(59, 155, 255, 0.12);
 
-  /* The brand is monochrome: "accent" is ink, so nothing on a marketing
-     surface can drift into colour. Blue lives in --deep-blue, for UI states. */
-  --accent: var(--ink);
-  --accent-soft: rgba(11, 11, 12, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow-sm: 0 6px 20px rgba(3, 8, 24, 0.4);
+  --shadow-lg: 0 24px 60px rgba(3, 8, 24, 0.55);
+  --shadow-glow: 0 12px 40px rgba(47, 128, 237, 0.45);
 
-  --border: #dcd8d2;
-  --shadow-sm: 0 1px 2px rgba(11, 11, 12, 0.06);
-  --shadow-lg: 0 24px 60px rgba(11, 11, 12, 0.1);
+  --navbar-bg: rgba(9, 14, 30, 0.72);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --maxw: 1160px;
 
-  --navbar-bg: rgba(246, 244, 241, 0.82);
-  --radius: 2px;
-  --radius-sm: 2px;
-  --maxw: 1240px;
-
-  --icon-color: var(--ink);
-  --icon-hover-color: var(--ink);
+  --icon-color: #e9eefc;
+  --icon-hover-color: #3b9bff;
 }
 
-/* ---------- Design tokens : INK ---------- */
-.dark {
-  --bg: var(--ink);
-  --bg-2: #131314;
-  --surface: #1a1a1c;
-  --surface-2: var(--graphite);
-  --card: #141416;
-  --card-border: #2e2d2b;
-  --card-border-hover: var(--warm-white);
+/* ---------- Design tokens : LIGHT ---------- */
+.light {
+  --bg: #f5f7fb;
+  --bg-2: #eef2fa;
+  --surface: rgba(15, 30, 70, 0.03);
+  --surface-2: rgba(15, 30, 70, 0.05);
+  --card: #ffffff;
+  --card-border: rgba(20, 50, 120, 0.1);
+  --card-border-hover: rgba(47, 128, 237, 0.45);
 
-  --text: #d8d5d0;
-  --text-strong: var(--warm-white);
-  --text-muted: #a9a5a0;
-  --text-faint: #8c8880;
+  --text: #1c2333;
+  --text-strong: #0c1426;
+  --text-muted: #5a6580;
+  --text-faint: #8b95ab;
 
-  --accent: var(--warm-white);
-  --accent-soft: rgba(246, 244, 241, 0.08);
+  --accent: #2f6fe0;
+  --accent-2: #6d5efc;
+  --accent-grad: linear-gradient(135deg, #2f80ed 0%, #6d5efc 100%);
+  --accent-soft: rgba(47, 128, 237, 0.1);
 
-  --border: #2e2d2b;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --border: rgba(20, 40, 90, 0.1);
+  --shadow-sm: 0 6px 20px rgba(30, 50, 110, 0.1);
+  --shadow-lg: 0 24px 60px rgba(30, 50, 110, 0.16);
+  --shadow-glow: 0 12px 40px rgba(47, 128, 237, 0.28);
 
-  --navbar-bg: rgba(11, 11, 12, 0.82);
+  --navbar-bg: rgba(255, 255, 255, 0.75);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --maxw: 1160px;
 
-  --icon-color: var(--warm-white);
-  --icon-hover-color: var(--warm-white);
+  --icon-color: #1c2333;
+  --icon-hover-color: #2f6fe0;
 }
 
 /* ---------- Base ---------- */
@@ -87,20 +84,26 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: var(--bg);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background:
+    radial-gradient(1000px 600px at 50% -200px, var(--bg-2), transparent 70%),
+    var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
   min-height: 100vh;
 }
 
+/* MainLayout wrapper override (was p-4) */
+.app > div,
+.p-4 {
+  padding: 0 !important;
+}
+
 h1, h2, h3 {
-  font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Space Grotesk", "Inter", sans-serif;
   color: var(--text-strong);
-  line-height: 1.06;
-  letter-spacing: -0.035em; /* identity tracking: -35/1000 */
-  font-weight: 500;
+  line-height: 1.15;
 }
 
 a {
@@ -109,21 +112,89 @@ a {
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--warm-white);
-}
-.dark ::selection {
-  background: var(--warm-white);
-  color: var(--ink);
+  background: rgba(59, 155, 255, 0.3);
 }
 
-/* Arabic and Hebrew get their own faces, at every level, so no run of text
-   can fall back to a Latin face that has no Arabic or Hebrew coverage. */
+/* ---------- Shared helpers ---------- */
+.section-wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.gradient-text {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--accent-grad);
+  box-shadow: var(--shadow-glow);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(47, 128, 237, 0.55);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.btn-ghost:hover {
+  transform: translateY(-3px);
+  border-color: var(--card-border-hover);
+  background: var(--surface-2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+
+/* Arabic and Hebrew pages (currently /ar/services and /he/services) use IBM Plex,
+   which also covers Latin, for everything including the navbar and footer. */
 html:lang(ar) body,
 html:lang(ar) :is(h1, h2, h3, h4) {
-  font-family: "IBM Plex Sans Arabic", "Archivo", system-ui, sans-serif;
+  font-family: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif;
 }
 html:lang(he) body,
 html:lang(he) :is(h1, h2, h3, h4) {
-  font-family: "IBM Plex Sans Hebrew", "Archivo", system-ui, sans-serif;
+  font-family: "IBM Plex Sans Hebrew", "Inter", system-ui, sans-serif;
 }

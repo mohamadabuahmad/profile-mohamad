@@ -82,7 +82,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Problems */}
-        <section className="ds-s ds-section" aria-labelledby="problems-title">
+        <section className="ds-section" aria-labelledby="problems-title">
           <div className="ds-wrap">
             <SectionHeading id="problems-title" eyebrow={t.problems.eyebrow} title={t.problems.title} intro={t.problems.intro} />
             <ul className="ds-problems">
@@ -104,7 +104,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Solutions */}
-        <section id="solutions" className="ds-s ds-section ds-solutions" aria-labelledby="solutions-title">
+        <section id="solutions" className="ds-section ds-solutions" aria-labelledby="solutions-title">
           <div className="ds-wrap">
             <SectionHeading
               id="solutions-title"
@@ -120,7 +120,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
               ))}
             </nav>
             {t.solutions.map((s, i) => (
-              <SolutionSection key={s.id} solution={s} index={i} onRequest={requestService} />
+              <SolutionSection key={s.id} solution={s} index={i} reverse={i % 2 === 1} onRequest={requestService} />
             ))}
           </div>
         </section>
@@ -128,7 +128,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         <AutomationDemo />
 
         {/* Outcomes */}
-        <section className="ds-s ds-section" aria-labelledby="outcomes-title">
+        <section className="ds-section" aria-labelledby="outcomes-title">
           <div className="ds-wrap">
             <SectionHeading id="outcomes-title" eyebrow={t.outcomes.eyebrow} title={t.outcomes.title} />
             <ul className="ds-outcomes">
@@ -147,7 +147,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Process */}
-        <section id="process" className="ds-s ds-section ds-band" aria-labelledby="process-title">
+        <section id="process" className="ds-section ds-band" aria-labelledby="process-title">
           <div className="ds-wrap">
             <SectionHeading id="process-title" eyebrow={t.process.eyebrow} title={t.process.title} intro={t.process.intro} />
             <ol className="ds-process" data-reveal>
@@ -168,7 +168,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Selected work */}
-        <section className="ds-s ds-section" aria-labelledby="work-title">
+        <section className="ds-section" aria-labelledby="work-title">
           <div className="ds-wrap">
             <SectionHeading id="work-title" eyebrow={t.work.eyebrow} title={t.work.title} intro={t.work.intro} />
             <div className="ds-cases">
@@ -180,7 +180,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* What can I build? */}
-        <section className="ds-s ds-section ds-band" aria-labelledby="ideas-title">
+        <section className="ds-section ds-band" aria-labelledby="ideas-title">
           <div className="ds-wrap">
             <SectionHeading id="ideas-title" eyebrow={t.explorer.eyebrow} title={t.explorer.title} intro={t.explorer.intro} />
             <BuildExplorer onRequest={requestService} />
@@ -188,7 +188,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Why */}
-        <section className="ds-s ds-section" aria-labelledby="why-title">
+        <section className="ds-section" aria-labelledby="why-title">
           <div className="ds-wrap ds-why">
             <SectionHeading id="why-title" eyebrow={t.why.eyebrow} title={t.why.title} />
             <ol className="ds-why__list">
@@ -206,7 +206,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Technology */}
-        <section className="ds-s ds-section ds-section--tight" aria-labelledby="tech-title">
+        <section className="ds-section ds-section--tight" aria-labelledby="tech-title">
           <div className="ds-wrap">
             <SectionHeading id="tech-title" eyebrow={t.tech.eyebrow} title={t.tech.title} intro={t.tech.intro} />
             <dl className="ds-tech" data-reveal>
@@ -223,7 +223,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* FAQ */}
-        <section className="ds-s ds-section" aria-labelledby="faq-title">
+        <section className="ds-section" aria-labelledby="faq-title">
           <div className="ds-wrap ds-faq-wrap">
             <SectionHeading id="faq-title" eyebrow={t.faq.eyebrow} title={t.faq.title} />
             <Faq />
@@ -231,7 +231,7 @@ const ServicesPage = ({ locale = 'en', content: t }) => {
         </section>
 
         {/* Closing CTA + lead form */}
-        <section id="start" className="ds-s ds-section ds-closing" aria-labelledby="closing-title">
+        <section id="start" className="ds-section ds-closing" aria-labelledby="closing-title">
           <div className="ds-wrap ds-closing__grid">
             <div className="ds-closing__copy" data-reveal>
               <p className="ds-eyebrow">{t.closing.eyebrow}</p>

@@ -38,11 +38,11 @@ export const pageFromPath = (pathname) => {
   return entry ? entry[0] : null;
 };
 
-// Fonts: Latin uses Archivo + IBM Plex Mono from index.html; these cover Arabic and Hebrew
+// Fonts: Latin uses Inter/Space Grotesk from index.html; these cover Arabic and Hebrew
 // (both families include Latin, so mixed text stays in one type system).
 export const LOCALE_FONTS = {
-  ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap',
-  he: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap',
+  ar: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap',
+  he: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap',
 };
 
 export const SITE = {

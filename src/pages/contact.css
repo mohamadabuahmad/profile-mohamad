@@ -1,8 +1,5 @@
 /* ============================================================
-   Contact — the page every CTA leads to. A full-measure opening
-   statement, then two columns: the reassurance on the leading
-   side, the form on the trailing side. DOM order and visual order
-   are identical at every width, so the form is never above the H1.
+   Contact — the page every CTA leads to.
    ============================================================ */
 
 .ds-contact {
@@ -10,391 +7,93 @@
 }
 .ds-contact__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
-  grid-template-areas:
-    "head   head"
-    "next   form"
-    "direct form"
-    "faq    form";
-  /* The form spans three rows and is usually the taller side; letting the last
-     row absorb the surplus keeps the leading column's rhythm even instead of
-     spreading the difference between the blocks. */
-  grid-template-rows: auto auto auto 1fr;
-  column-gap: clamp(32px, 6vw, 88px);
-  row-gap: clamp(28px, 3.5vw, 44px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 80px);
   align-items: start;
 }
-.ds-contact__head   { grid-area: head; }
-.ds-contact__next   { grid-area: next; }
-.ds-contact__form   { grid-area: form; }
-.ds-contact__direct { grid-area: direct; }
-.ds-contact__faq    { grid-area: faq; }
-
-/* ---------- Opening statement ---------- */
-.ds-contact__head {
-  padding-bottom: clamp(8px, 2vw, 28px);
+.ds-contact__title {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  max-width: 16ch;
 }
-.ds-contact .ds-contact__title {
-  font-size: clamp(2.3rem, 5.4vw, 4.2rem);
-  line-height: 1.03;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  max-width: 15ch;
-  margin-bottom: clamp(18px, 2.4vw, 26px);
-  text-wrap: balance;
+.ds-contact__copy > .ds-rise:not(:first-child) {
+  margin-top: clamp(28px, 4vw, 40px);
 }
-.ds-contact__lede {
-  max-width: 48ch;
-}
-
-/* ---------- Supporting columns ---------- */
-.ds-contact__next,
-.ds-contact__direct,
-.ds-contact__faq {
-  padding-top: clamp(22px, 2.8vw, 30px);
-  border-top: 1px solid var(--ds-line);
-}
-.ds-contact__next .ds-next li::before {
-  color: var(--ds-faint);
-}
-
 .ds-contact__direct {
   display: grid;
-  gap: 4px;
+  gap: 14px;
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--ds-line);
 }
-.ds-contact__line {
+.ds-contact__direct > a {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 48px;
-  padding-block: 4px;
   color: var(--ds-ink);
 }
-.ds-contact__line svg {
+.ds-contact__direct > a svg {
   flex: none;
   width: 40px;
   height: 40px;
   padding: 11px;
-  border: 1px solid var(--ds-line);
-  border-radius: var(--ds-radius);
-  color: var(--ds-ink);
-  transition: border-color var(--ds-fast) ease, background-color var(--ds-fast) ease;
+  border-radius: 12px;
+  border: 1px solid var(--ds-line-strong);
+  color: var(--accent);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.ds-contact__line:hover svg {
-  border-color: var(--ds-ink);
-  background: var(--ds-soft);
+.ds-contact__direct > a:hover svg {
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
-.ds-contact__line em {
+.ds-contact__direct em {
   display: block;
   font-family: var(--ds-mono);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-style: normal;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ds-muted);
-  margin-bottom: 3px;
-}
-.ds-contact__line bdi {
-  font-size: 0.98rem;
+  margin-bottom: 2px;
 }
 .ds-contact__social {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 26px;
-  margin-top: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--ds-line);
+  gap: 10px 22px;
+  margin-top: 6px;
 }
 .ds-contact__social .ds-link {
-  align-items: center;
-  min-height: 44px;
-  gap: 9px;
+  gap: 8px;
 }
-
+.ds-contact__faq {
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--ds-line);
+}
 .ds-contact__faq .ds-faq__item:first-of-type {
   border-top: 1px solid var(--ds-line);
 }
 .ds-contact__faq .ds-faq__icon {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   line-height: 1;
-  color: var(--ds-faint);
-  transition: transform var(--ds-normal) var(--ds-ease), color var(--ds-fast) ease;
-}
-.ds-contact__faq .ds-faq__q:hover .ds-faq__icon {
-  color: var(--ds-ink);
+  color: var(--accent);
+  transition: transform 0.25s var(--ds-ease);
 }
 .ds-contact__faq .ds-faq__item[open] .ds-faq__icon {
   transform: rotate(45deg);
-  color: var(--ds-ink);
 }
-
-/* ============================================================
-   The form panel
-   ============================================================ */
 .ds-contact__form {
   position: sticky;
-  top: clamp(88px, 12vh, 116px);
-  align-self: start;
-}
-.ds-contact__panel {
-  padding: clamp(22px, 2.8vw, 36px);
+  top: clamp(90px, 12vh, 120px);
+  padding: clamp(22px, 3vw, 36px);
   border: 1px solid var(--ds-line-strong);
-  border-radius: var(--ds-radius);
+  border-radius: var(--ds-radius-lg);
   background: var(--ds-panel);
-}
-.ds-contact .ds-form__heading {
-  margin: 0 0 6px;
-  font-size: clamp(1.2rem, 1.7vw, 1.4rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-/* one hairline under the panel heading, the same device the page uses elsewhere */
-.ds-contact .ds-form {
-  margin-top: 22px;
-  padding-top: 24px;
-  border-top: 1px solid var(--ds-line);
+  box-shadow: var(--ds-shadow);
 }
 
-/* ---------- Fields ---------- */
-.ds-contact .ds-field {
-  margin-bottom: 20px;
-}
-.ds-contact .ds-field label,
-.ds-contact .ds-field legend {
-  font-size: 0.84rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ds-ink);
-}
-.ds-contact .ds-field input,
-.ds-contact .ds-field select,
-.ds-contact .ds-field textarea {
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid var(--ds-input-border);
-  border-radius: var(--ds-radius);
-  background: var(--ds-input);
-  color: var(--ds-ink);
-  /* 16px keeps iOS from zooming the page on focus */
-  font: 400 1rem/1.45 var(--ds-font);
-  transition: border-color var(--ds-fast) ease, box-shadow var(--ds-fast) ease,
-    background-color var(--ds-fast) ease;
-}
-.ds-contact .ds-field input::placeholder,
-.ds-contact .ds-field textarea::placeholder {
-  color: var(--ds-faint);
-}
-.ds-contact .ds-field input:hover,
-.ds-contact .ds-field select:hover,
-.ds-contact .ds-field textarea:hover {
-  border-color: var(--ds-ink);
-}
-/* Colour appears only as interface state. */
-.ds-contact .ds-field input:focus,
-.ds-contact .ds-field select:focus,
-.ds-contact .ds-field textarea:focus {
-  outline: none;
-  border-color: var(--ds-focus);
-  box-shadow: 0 0 0 3px var(--ds-ring);
-}
-.ds-contact .ds-field textarea {
-  min-height: 148px;
-  resize: vertical;
-}
-/* The browser's own autofill ground would break the monochrome panel. */
-.ds-contact .ds-field input:-webkit-autofill,
-.ds-contact .ds-field input:-webkit-autofill:hover,
-.ds-contact .ds-field input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--ds-ink);
-  -webkit-box-shadow: 0 0 0 100px var(--ds-input) inset;
-  caret-color: var(--ds-ink);
-}
-
-/* Select: the native control's arrow is replaced by a drawn chevron so the
-   field matches the inputs beside it. */
-.ds-contact .ds-field:has(select) {
-  position: relative;
-}
-.ds-contact .ds-field select {
-  appearance: none;
-  -webkit-appearance: none;
-  padding-inline-end: 42px;
-  cursor: pointer;
-}
-.ds-contact .ds-field:has(select)::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: 18px;
-  bottom: 21px;
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--ds-muted);
-  border-block-start: 0;
-  border-inline-start: 0;
-  /* the remaining corner is mirrored in RTL, so the rotation mirrors with it */
-  transform: rotate(calc(45deg * var(--ds-flip)));
-  pointer-events: none;
-}
-
-/* ---------- Validation ---------- */
-.ds-contact .ds-field [aria-invalid="true"] {
-  border-color: var(--ds-danger);
-  background: var(--ds-danger-soft);
-}
-.ds-contact .ds-field [aria-invalid="true"]:focus {
-  border-color: var(--ds-danger);
-  box-shadow: 0 0 0 3px var(--ds-danger-soft);
-}
-.ds-contact .ds-field__hint {
-  font-size: 0.8rem;
-  color: var(--ds-muted);
-}
-.ds-contact .ds-field__opt {
-  font-family: var(--ds-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ds-faint);
-}
-.ds-contact .ds-field__error,
-.ds-contact .ds-form__summary {
-  display: flex;
-  align-items: baseline;
-  gap: 7px;
-  font-size: 0.82rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--ds-danger);
-}
-.ds-contact .ds-field__error::before,
-.ds-contact .ds-form__summary:not(:empty)::before {
-  content: "—";
-  flex: none;
-  font-family: var(--ds-mono);
-}
-.ds-contact .ds-form__error {
-  align-items: baseline;
-  border-radius: var(--ds-radius);
-  border-color: var(--ds-danger);
-  background: var(--ds-danger-soft);
-}
-
-/* ---------- Needs: square selectable options, not pills ---------- */
-.ds-contact .ds-needs__options {
-  gap: 8px;
-}
-.ds-contact .ds-need span {
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--ds-line-strong);
-  border-radius: var(--ds-radius);
-  font-size: 0.86rem;
-  font-weight: 400;
-  color: var(--ds-body);
-  transition: background-color var(--ds-fast) ease, border-color var(--ds-fast) ease,
-    color var(--ds-fast) ease;
-}
-.ds-contact .ds-need span:hover {
-  border-color: var(--ds-ink);
-  color: var(--ds-ink);
-}
-.ds-contact .ds-need input:checked + span {
-  background: var(--ds-btn);
-  border-color: var(--ds-btn);
-  color: var(--ds-btn-ink);
-}
-.ds-contact .ds-need input:focus-visible + span {
-  outline: 2px solid var(--ds-focus);
-  outline-offset: 2px;
-}
-
-/* ---------- Submit, sending and fine print ---------- */
-.ds-contact .ds-form .ds-btn--primary {
-  min-height: 52px;
-  margin-top: 4px;
-}
-.ds-contact .ds-form .ds-btn--primary:disabled {
-  opacity: 1;
-  background: var(--ds-muted);
-  cursor: progress;
-}
-.ds-contact .ds-spin {
-  animation: ds-spin 900ms linear infinite;
-}
-.ds-contact .ds-form__fine {
-  margin-top: 14px;
-  font-size: 0.74rem;
-  line-height: 1.5;
-  color: var(--ds-faint);
-}
-
-/* ---------- Success ---------- */
-.ds-contact .ds-form--done {
-  justify-items: start;
-  gap: 14px;
-  padding: 26px 0 8px;
-  text-align: start;
-}
-.ds-contact .ds-form__done-icon {
-  font-size: 34px;
-  color: var(--ds-ok);
-}
-.ds-contact .ds-form__title {
-  font-size: clamp(1.3rem, 2vw, 1.6rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
-.ds-contact .ds-form--done p {
-  max-width: 42ch;
-}
-
-/* Focus is the one place colour is allowed, so it is the same blue everywhere. */
-.ds-contact a:focus-visible,
-.ds-contact button:focus-visible,
-.ds-contact summary:focus-visible {
-  outline: 2px solid var(--ds-focus);
-  outline-offset: 3px;
-}
-
-/* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .ds-contact__grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto;
-    grid-template-areas:
-      "head"
-      "next"
-      "form"
-      "direct"
-      "faq";
   }
   .ds-contact__form {
     position: static;
-  }
-  .ds-contact__panel {
-    padding: clamp(20px, 4vw, 30px);
-  }
-}
-
-@media (max-width: 640px) {
-  .ds-contact .ds-contact__title {
-    max-width: none;
-  }
-  .ds-contact .ds-form__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  /* Edge-to-edge panel: at 375px a boxed form inside a gutter wastes the measure. */
-  .ds-contact__panel {
-    margin-inline: calc(var(--ds-gutter) * -1);
-    padding-inline: var(--ds-gutter);
-    border-inline: 0;
-    border-radius: 0;
-  }
-  .ds-contact .ds-needs__options {
-    gap: 7px;
-  }
-  .ds-contact .ds-need span {
-    font-size: 0.84rem;
-    padding: 0 12px;
   }
 }

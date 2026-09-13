@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { FiUser, FiClock, FiZap, FiCpu, FiUsers } from 'react-icons/fi';
 import useReducedMotion from '../../../hooks/useReducedMotion';
 import { useServicesText } from '../i18n';
 import SectionHeading from '../../../components/ui/SectionHeading';
 
+const WHO_ICON = { auto: FiZap, ai: FiCpu, team: FiUsers };
 const STEP_MS = 850;
 
-// Before/after comparison of one workflow, drawn as geometry: nodes on a spine.
-// "Today" is a broken chain of manual handoffs; "Automated" is one continuous line
-// that draws itself through the same work. The after lane plays once whenever it
-// comes into view or the scenario changes (instantly with reduced motion).
+// Before/after comparison of one workflow. The "after" lane plays through its steps once
+// whenever it comes into view or the scenario changes (instantly with reduced motion).
 // Steps run top to bottom, so the flow reads the same in LTR and RTL.
 const AutomationDemo = () => {
   const { t, locale } = useServicesText();
@@ -22,7 +22,6 @@ const AutomationDemo = () => {
   const tabRefs = useRef([]);
   const scenario = scenarios[active];
   const rtl = locale !== 'en';
-  const total = scenario.after.length;
 
   useEffect(() => {
     const io = new IntersectionObserver(([entry]) => entry.isIntersecting && setInView(true), { threshold: 0.35 });
@@ -31,6 +30,7 @@ const AutomationDemo = () => {
   }, []);
 
   useEffect(() => {
+    const total = scenario.after.length;
     if (reduced) {
       setPlayed(total);
       return undefined;
@@ -44,7 +44,7 @@ const AutomationDemo = () => {
       if (n >= total) clearInterval(timer);
     }, STEP_MS);
     return () => clearInterval(timer);
-  }, [active, inView, reduced, total]);
+  }, [active, inView, reduced, scenario.after.length]);
 
   // Arrow keys follow the visual order of the tabs, which is mirrored in RTL.
   const onTabKey = (e) => {
@@ -62,7 +62,7 @@ const AutomationDemo = () => {
   };
 
   return (
-    <section id="automation-demo" className="ds-s ds-section ds-band" aria-labelledby="demo-title">
+    <section id="automation-demo" className="ds-section ds-band" aria-labelledby="demo-title">
       <div className="ds-wrap">
         <SectionHeading id="demo-title" eyebrow={demo.eyebrow} title={demo.title} intro={demo.intro} />
 
@@ -81,7 +81,6 @@ const AutomationDemo = () => {
               onClick={() => setActive(i)}
               onKeyDown={onTabKey}
             >
-              <span className="ds-tab__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
               {s.label}
             </button>
           ))}
@@ -102,38 +101,34 @@ const AutomationDemo = () => {
             <ol className="ds-lane__steps">
               {scenario.before.map((text, i) => (
                 <li key={text} className="ds-step ds-step--manual">
-                  <span className="ds-step__node" aria-hidden="true">
-                    <b>{String(i + 1).padStart(2, '0')}</b>
-                  </span>
+                  <span className="ds-step__icon" aria-hidden="true"><FiUser /></span>
                   <span className="ds-step__text">{text}</span>
-                  {i < scenario.before.length - 1 && <span className="ds-step__wait">{demo.wait}</span>}
+                  {i < scenario.before.length - 1 && (
+                    <span className="ds-step__wait"><FiClock aria-hidden="true" /> {demo.wait}</span>
+                  )}
                 </li>
               ))}
             </ol>
-          </div>
-
-          {/* The turn from one lane to the other: a hairline that points the reading way. */}
-          <div className="ds-demo__turn" aria-hidden="true">
-            <span className="ds-demo__turn-line" />
           </div>
 
           <div className="ds-lane ds-lane--after">
             <h3 className="ds-lane__title">
               <span className="ds-lane__tag ds-lane__tag--on">{demo.afterTag}</span> {demo.afterTitle}
             </h3>
-            <ol className="ds-lane__steps" style={{ '--played': total ? played / total : 0 }}>
-              {scenario.after.map((step, i) => (
-                <li
-                  key={step.text}
-                  className={`ds-step ds-step--${step.who} ${i < played ? 'is-done' : ''} ${i === played - 1 ? 'is-current' : ''}`}
-                >
-                  <span className="ds-step__node" aria-hidden="true">
-                    <b>{String(i + 1).padStart(2, '0')}</b>
-                  </span>
-                  <span className="ds-step__text">{step.text}</span>
-                  <span className="ds-step__who">{demo.who[step.who]}</span>
-                </li>
-              ))}
+            <ol className="ds-lane__steps">
+              {scenario.after.map((step, i) => {
+                const Icon = WHO_ICON[step.who];
+                return (
+                  <li
+                    key={step.text}
+                    className={`ds-step ds-step--${step.who} ${i < played ? 'is-done' : ''} ${i === played - 1 ? 'is-current' : ''}`}
+                  >
+                    <span className="ds-step__icon" aria-hidden="true"><Icon /></span>
+                    <span className="ds-step__text">{step.text}</span>
+                    <span className="ds-step__who">{demo.who[step.who]}</span>
+                  </li>
+                );
+              })}
             </ol>
             <p className="ds-lane__summary">{demo.summary}</p>
           </div>

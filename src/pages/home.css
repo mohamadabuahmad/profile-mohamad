@@ -2,212 +2,196 @@
    Home — page-specific styles. Tokens live in styles/system.css.
    ============================================================ */
 
-/* Hero: asymmetric editorial split — the statement carries the page,
-   the mark resolves beside it. */
 .ds-hero-home {
+  --hero-node: var(--accent);
+  --hero-line: rgba(120, 160, 255, 0.42);
+  --hero-glow: rgba(59, 155, 255, 0.2);
   position: relative;
-  padding-block: clamp(56px, 9vw, 128px) clamp(40px, 6vw, 80px);
+  padding-block: clamp(48px, 8vw, 104px) clamp(56px, 8vw, 112px);
+  text-align: center;
   overflow: hidden;
 }
-.ds-hero-home__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-  gap: clamp(32px, 6vw, 96px);
-  align-items: center;
+.light .ds-hero-home {
+  --hero-line: rgba(36, 76, 170, 0.5);
+  --hero-glow: rgba(47, 111, 224, 0.18);
 }
-.ds-hero-home .ds-display {
-  max-width: 13ch;
-}
-.ds-hero-home__lede {
-  margin-top: clamp(22px, 2.6vw, 32px);
-  max-width: 44ch;
-  font-size: clamp(1.08rem, 1.5vw, 1.28rem);
-}
-.ds-hero-home__actions {
-  margin-top: clamp(28px, 3.4vw, 44px);
-}
-.ds-hero-home__stage {
-  margin: 0;
+.ds-hero-home__copy {
+  position: relative;
+  z-index: 1;
   display: grid;
   justify-items: center;
-  gap: 22px;
 }
-.ds-hero-home__stage .ds-resolve {
-  width: min(100%, 300px);
+.ds-hero-home .ds-display {
+  max-width: 16ch;
 }
-.ds-hero-home__stage figcaption {
-  margin: 0;
-  text-align: center;
+.ds-hero-home__lede {
+  margin-top: clamp(20px, 2.6vw, 28px);
+  max-width: 56ch;
+  font-size: clamp(1.08rem, 1.5vw, 1.3rem);
 }
-/* The proof points sit on a rule under the whole hero, like a spec line. */
+.ds-hero-home__actions {
+  justify-content: center;
+}
+.ds-hero-home__stage {
+  position: relative;
+  margin-top: clamp(24px, 4vw, 48px);
+}
+.ds-hero-canvas {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 34vw, 420px);
+  /* fade the sphere into the page rather than ending it on a hard edge */
+  -webkit-mask-image: radial-gradient(75% 70% at 50% 45%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(75% 70% at 50% 45%, #000 55%, transparent 100%);
+}
 .ds-hero-home__points {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px clamp(24px, 4vw, 56px);
+  justify-content: center;
+  gap: 10px 28px;
   list-style: none;
-  margin: clamp(40px, 6vw, 76px) 0 0;
-  padding-top: 22px;
-  border-top: 1px solid var(--ds-line);
-  font-family: var(--ds-mono);
-  font-size: 0.76rem;
-  letter-spacing: 0.02em;
+  margin: clamp(4px, 1vw, 12px) 0 0;
+  padding: 0;
+  font-size: 0.94rem;
   color: var(--ds-muted);
 }
 .ds-hero-home__points li {
   display: inline-flex;
   align-items: flex-start;
-  gap: 9px;
+  gap: 8px;
 }
 .ds-hero-home__points svg {
   flex: none;
-  margin-top: 0.2em;
-  color: var(--ds-ink);
+  margin-top: 0.28em;
+  color: var(--ds-ok);
 }
 
-/* 01 — What I build. An editorial list on hairlines, not a card grid:
-   index, name and description align to one column rhythm. */
+/* What I build */
 .ds-caps {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--ds-line);
 }
 .ds-cap {
-  border-bottom: 1px solid var(--ds-line);
+  grid-column: span 2;
 }
-/* An odd item count would otherwise leave a ruled cell around nothing: the last
-   one runs the full width as an emphasis row instead. */
-.ds-cap:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  border-inline-end: 0;
-}
-.ds-cap:last-child:nth-child(odd) .ds-cap__text {
-  max-width: 62ch;
-}
-.ds-cap:nth-child(odd) {
-  border-inline-end: 1px solid var(--ds-line);
+.ds-cap:nth-child(n + 4) {
+  grid-column: span 3;
 }
 .ds-cap__link {
-  display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  align-items: start;
-  gap: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   height: 100%;
-  padding: clamp(26px, 3vw, 40px) clamp(20px, 2.6vw, 40px) clamp(26px, 3vw, 40px) 0;
-  padding-inline: 0 clamp(20px, 2.6vw, 40px);
-  transition: background-color var(--ds-normal) var(--ds-ease);
-}
-.ds-cap:nth-child(even) .ds-cap__link {
-  padding-inline: clamp(20px, 2.6vw, 40px) 0;
+  padding: clamp(22px, 2.4vw, 32px);
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-panel);
+  transition: border-color 0.25s ease, transform 0.35s var(--ds-ease);
 }
 .ds-cap__link:hover {
-  background: var(--ds-soft);
+  border-color: var(--accent);
+  transform: translateY(-3px);
 }
 .ds-cap__index {
-  grid-row: 1 / span 3;
   font-family: var(--ds-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--ds-faint);
-  padding-top: 0.45em;
+  font-size: 0.72rem;
+  color: var(--accent);
 }
 .ds-cap__name {
-  margin: 0 0 10px;
-  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  letter-spacing: -0.01em;
 }
 .ds-cap__text {
+  flex: 1;
   font-size: 0.97rem;
   line-height: 1.6;
   color: var(--ds-muted);
-  max-width: 42ch;
 }
 .ds-cap__more {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  grid-column: 2;
-  font-family: var(--ds-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ds-ink);
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
   opacity: 0;
   transform: translateY(4px);
-  transition: opacity var(--ds-normal) var(--ds-ease), transform var(--ds-normal) var(--ds-ease);
+  transition: opacity 0.25s ease, transform 0.25s var(--ds-ease);
 }
 .ds-cap__link:hover .ds-cap__more,
-.ds-cap__link:focus .ds-cap__more,
-.ds-cap__link:focus-visible .ds-cap__more,
-.ds-cap__link:focus-within .ds-cap__more {
+.ds-cap__link:focus-visible .ds-cap__more {
   opacity: 1;
   transform: none;
 }
 
-/* 02 — Problems → answer. The problems read as a plain indexed list;
-   the answer sits opposite them with room around it. */
+/* Problems → answer */
 .ds-problems-home {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(32px, 6vw, 104px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 6vw, 88px);
   align-items: start;
 }
 .ds-problems-home__list .ds-eyebrow {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .ds-problems-home__list ul {
   display: grid;
-  gap: 0;
+  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--ds-line);
 }
 .ds-problems-home__list li {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--ds-line);
-  font-size: clamp(1rem, 1.4vw, 1.12rem);
-  line-height: 1.45;
-  color: var(--ds-body);
+  padding: 16px 20px;
+  border: 1px solid var(--ds-line);
+  border-radius: 14px;
+  background: var(--ds-panel);
+  font-family: var(--ds-display-font);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.4;
+  color: var(--ds-ink);
 }
 .ds-problems-home__answer .ds-lede {
-  margin-block: 20px 26px;
+  margin-block: 20px 24px;
 }
 
-/* 03 — Automation: before → after. Two lanes divided by a rule, with the
-   transformation shown as geometry rather than decoration. */
+/* Automation: before → after */
 .ds-flow {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: stretch;
-  gap: clamp(16px, 3vw, 44px);
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
 }
 .ds-flow__lane {
-  padding-top: 24px;
-  border-top: 1px solid var(--ds-line);
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-soft);
 }
 .ds-flow__lane--after {
-  border-top-color: var(--ds-ink);
+  background: var(--ds-panel);
+  border-color: var(--ds-line-strong);
+  box-shadow: var(--ds-shadow);
 }
 .ds-flow__label {
   font-family: var(--ds-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ds-faint);
-  margin-bottom: 20px;
+  color: var(--ds-muted);
+  margin-bottom: 16px;
 }
 .ds-flow__label--on {
-  color: var(--ds-ink);
+  color: var(--accent);
 }
 .ds-flow ol {
   display: grid;
-  gap: 2px;
+  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -215,74 +199,76 @@
 .ds-flow li {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 0;
-  font-size: 0.95rem;
-  color: var(--ds-muted);
-}
-.ds-flow__lane--after li {
+  gap: 12px;
+  font-size: 0.97rem;
   color: var(--ds-body);
 }
 .ds-flow li svg {
   flex: none;
-  width: 28px;
-  height: 28px;
-  padding: 6px;
-  border: 1px solid var(--ds-line);
-  color: var(--ds-faint);
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--ds-line-strong);
+  color: var(--ds-muted);
 }
 .ds-flow__lane--after li svg {
-  border-color: var(--ds-ink);
-  background: var(--ds-ink);
-  color: var(--bg);
+  border-color: transparent;
+  background: var(--ds-btn);
+  color: #fff;
 }
 .ds-flow__arrow {
   display: grid;
   place-items: center;
-  align-self: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   border: 1px solid var(--ds-line-strong);
-  color: var(--ds-ink);
+  color: var(--accent);
 }
 .ds-flow__cta {
-  margin-top: 36px;
+  margin-top: 28px;
+  text-align: center;
 }
 
-/* 04 — Selected work. Three studies on a shared rule, image-led. */
+/* Selected work preview */
 .ds-work-preview {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.4vw, 32px);
+  gap: 16px;
 }
 .ds-work-card__link {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   height: 100%;
-  padding-top: 20px;
-  border-top: 1px solid var(--ds-line);
-  transition: border-color var(--ds-normal) var(--ds-ease);
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-panel);
+  transition: border-color 0.25s ease, transform 0.35s var(--ds-ease);
 }
 .ds-work-card__link:hover {
-  border-top-color: var(--ds-ink);
+  border-color: var(--accent);
+  transform: translateY(-3px);
 }
 .ds-work-card__media {
   display: grid;
   place-items: end center;
-  height: 240px;
-  margin-bottom: 10px;
+  height: 232px;
+  margin-bottom: 8px;
+  border-radius: 18px;
   background: var(--ds-stage);
   background-image: linear-gradient(var(--ds-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--ds-grid) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-size: 26px 26px;
   overflow: hidden;
-  padding: 24px 0 0;
+  padding: 22px 0 0;
 }
 .ds-work-card__media .ds-device--phone {
-  max-width: 150px;
+  max-width: 152px;
   margin-bottom: -34px;
-  transition: transform var(--ds-cinematic) var(--ds-ease);
+  transition: transform 0.45s var(--ds-ease);
 }
 .ds-work-card__media .ds-auto-graphic {
   max-width: 210px;
@@ -290,124 +276,99 @@
   transform: scale(0.86);
 }
 .ds-work-card__link:hover .ds-device--phone {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 .ds-work-card__name {
   margin: 0;
-  font-size: 1.22rem;
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  font-size: 1.2rem;
 }
 .ds-work-card__text {
   flex: 1;
-  font-size: 0.94rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--ds-muted);
 }
 
 .ds-center {
-  margin-top: clamp(32px, 4.5vw, 56px);
+  margin-top: clamp(28px, 4vw, 44px);
+  text-align: center;
 }
 
-/* 05 — Process. Numbered columns divided by rules. */
+/* Process */
 .ds-steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(20px, 3vw, 48px);
+  gap: clamp(20px, 3vw, 40px);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .ds-steps li {
-  padding-top: 24px;
-  border-top: 1px solid var(--ds-ink);
+  padding-top: 22px;
+  border-top: 2px solid var(--ds-line-strong);
 }
 .ds-steps__num {
   font-family: var(--ds-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--ds-faint);
+  font-size: 0.78rem;
+  color: var(--accent);
 }
 .ds-steps h3 {
-  margin: 14px 0 12px;
+  margin: 10px 0 10px;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
 }
 .ds-steps p {
-  font-size: 0.96rem;
+  font-size: 0.97rem;
   line-height: 1.65;
   color: var(--ds-muted);
 }
 
-/* 06 — Why. Heading holds its column while the reasons scroll past it. */
+/* Why */
 .ds-why-home {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: clamp(28px, 5vw, 96px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 5vw, 80px);
   align-items: start;
 }
 .ds-why-home .ds-heading {
   margin-bottom: 0;
   position: sticky;
-  top: 130px;
+  top: 120px;
 }
 .ds-why-home__list {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--ds-line);
 }
 .ds-why-home__list li {
-  padding: clamp(22px, 2.6vw, 32px) 0;
-  border-bottom: 1px solid var(--ds-line);
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-panel);
 }
 .ds-why-home__list h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: -0.035em;
 }
 .ds-why-home__list p {
   color: var(--ds-muted);
   line-height: 1.65;
-  max-width: 52ch;
 }
 
-/* 07 — Technology. A split: the statement holds its column while the stack runs
-   as a ruled mono inventory beside it. */
-.ds-tech-home {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: clamp(28px, 5vw, 96px);
-  align-items: start;
-}
-.ds-tech-home .ds-heading {
-  margin-bottom: 0;
-}
-.ds-tech-home__list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 clamp(20px, 3vw, 44px);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid var(--ds-line);
-}
-.ds-tech-home__list li {
-  padding: 11px 0;
-  border-bottom: 1px solid var(--ds-line);
-  font-family: var(--ds-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--ds-body);
+.ds-tech-strip {
+  justify-content: center;
+  gap: 10px;
 }
 
 @media (max-width: 1000px) {
-  .ds-tech-home {
-    grid-template-columns: minmax(0, 1fr);
+  .ds-caps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ds-cap,
+  .ds-cap:nth-child(n + 4) {
+    grid-column: span 1;
   }
   .ds-why-home__list {
     grid-template-columns: minmax(0, 1fr);
@@ -436,39 +397,6 @@
   }
 }
 
-@media (max-width: 900px) {
-  .ds-hero-home__grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: clamp(28px, 6vw, 48px);
-  }
-  .ds-hero-home__stage {
-    justify-items: stretch;
-  }
-  .ds-hero-home__stage .ds-resolve {
-    width: 100%;
-    max-width: none;
-  }
-  .ds-hero-home__stage figcaption {
-    text-align: var(--ds-start);
-  }
-}
-
-@media (max-width: 640px) {
-  /* The number moves above the content so body copy runs to the gutter. */
-  .ds-cap__link {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-  }
-  .ds-cap__index {
-    grid-row: auto;
-    padding-top: 0;
-    margin-bottom: 10px;
-  }
-  .ds-cap__more {
-    grid-column: 1;
-  }
-}
-
 @media (max-width: 600px) {
   .ds-hero-home .ds-display {
     max-width: none;
@@ -476,14 +404,10 @@
   .ds-hero-home__actions .ds-btn {
     width: 100%;
   }
+  .ds-hero-canvas {
+    height: 250px;
+  }
   .ds-caps {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .ds-cap:nth-child(odd) {
-    border-inline-end: 0;
-  }
-  .ds-cap__link,
-  .ds-cap:nth-child(even) .ds-cap__link {
-    padding-inline: 0;
   }
 }
